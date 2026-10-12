@@ -143,6 +143,38 @@
   .status{font-size:15px;font-weight:600;color:var(--accent);min-height:1.5em}
   .fallback{margin-top:12px}
   .fallback[hidden]{display:none}
+  /* ---------- Pour aller plus loin (secondaire) ---------- */
+  .more{margin-top:14px}
+  .more-toggle{
+    font:inherit;font-size:16px;font-weight:600;color:var(--ink-soft);background:transparent;border:0;
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 4px;cursor:pointer;border-radius:8px;text-align:left;
+  }
+  .more-toggle:hover{color:var(--ink)}
+  .more-toggle:hover span{text-decoration:underline;text-underline-offset:3px}
+  .chev{flex:none;transition:transform .25s ease}
+  [aria-expanded="true"] > .chev{transform:rotate(180deg)}
+  .collapse{display:grid;grid-template-rows:0fr;visibility:hidden;
+    transition:grid-template-rows .3s ease, visibility 0s linear .3s}
+  .collapse.open{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .3s ease, visibility 0s}
+  .collapse-inner{overflow:hidden;min-height:0}
+  .acc{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-top:8px}
+  .acc-item + .acc-item{border-top:1px solid var(--line)}
+  .acc-h{margin:0;font-size:inherit;letter-spacing:0;text-transform:none;color:inherit}
+  .acc-btn{
+    font:inherit;font-size:16px;font-weight:600;color:var(--ink);background:transparent;border:0;width:100%;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;
+    padding:16px 18px;min-height:52px;cursor:pointer;border-radius:14px;
+  }
+  .acc-btn:hover{background:var(--bg)}
+  .acc-btn .chev{color:var(--ink-soft)}
+  .acc-body{padding:0 18px 18px;font-size:16px;color:var(--ink-soft)}
+  .acc-body p{margin:0 0 10px}
+  .acc-body p:last-child{margin-bottom:0}
+  .qs{margin:0 0 12px;padding-left:20px}
+  .qs li{margin-bottom:8px;color:var(--ink)}
+  .small{font-size:14px;font-style:italic}
+  .cite{font-size:13px;border-top:1px solid var(--line);padding-top:10px;margin-top:14px!important}
+
   .end{border-top:1px solid var(--line);padding-top:28px;margin-top:8px;display:flex;justify-content:center}
 
   /* ---------- Responsive ---------- */
@@ -270,7 +302,6 @@
     <div class="block">
       <p class="lead">Plus on a investi de temps, d'argent ou d'efforts dans une voie, plus il est difficile de l'abandonner, même quand l'avenir ne le justifie plus.</p>
       <p>Notre esprit déteste l'idée de « perdre » ce qui a déjà été engagé.</p>
-      <p class="ref">Pour aller plus loin : ce biais a été décrit notamment par Arkes et Blumer (1985). On le rapproche souvent de l'aversion à la perte, un autre phénomène, mis en évidence par Kahneman et Tversky (1979).</p>
       <div class="nuance">
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 8v4.2M10 14.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         <span><strong>Attention : le passé n'est pas inutile.</strong> Les compétences, les relations ou l'expérience acquises peuvent légitimement compter. Le but n'est pas d'effacer son passé, mais de ne pas le laisser décider seul.</span>
@@ -281,6 +312,76 @@
       <div class="tool">
         <p class="t-label">La question qui aide à décider</p>
         <blockquote id="toolQuestion">« Si je partais de zéro aujourd'hui, en sachant ce que je sais, est-ce que je choisirais encore cette voie&nbsp;? »</blockquote>
+      </div>
+
+      <!-- Pour aller plus loin : facultatif, hors progression -->
+      <div class="more">
+        <button type="button" class="more-toggle" id="moreToggle" aria-expanded="false" aria-controls="morePanel">
+          <span>Pour aller plus loin : comprendre ce biais</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7 9 11.5 13.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="collapse" id="morePanel">
+          <div class="collapse-inner">
+            <div class="acc">
+
+              <div class="acc-item">
+                <h3 class="acc-h"><button type="button" class="acc-btn" id="acc-b1" aria-expanded="false" aria-controls="acc-p1">
+                  <span>Pourquoi notre passé influence-t-il nos décisions&nbsp;?</span>
+                  <svg class="chev" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7 9 11.5 13.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button></h3>
+                <div class="collapse" id="acc-p1" role="region" aria-labelledby="acc-b1"><div class="collapse-inner"><div class="acc-body">
+                  <p>Quand nous avons consacré beaucoup de temps, d'argent ou d'énergie à quelque chose, nous avons parfois du mal à y renoncer.</p>
+                  <p>Abandonner peut donner l'impression que tous ces efforts ont été inutiles.</p>
+                  <p>Pourtant, continuer ne permet pas de récupérer ce qui a déjà été dépensé. Ce qui compte, c'est ce que chaque option peut encore nous apporter.</p>
+                </div></div></div>
+              </div>
+
+              <div class="acc-item">
+                <h3 class="acc-h"><button type="button" class="acc-btn" id="acc-b2" aria-expanded="false" aria-controls="acc-p2">
+                  <span>Un exemple dans la vie professionnelle</span>
+                  <svg class="chev" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7 9 11.5 13.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button></h3>
+                <div class="collapse" id="acc-p2" role="region" aria-labelledby="acc-b2"><div class="collapse-inner"><div class="acc-body">
+                  <p>Vous travaillez depuis 12 ans dans un secteur qui ne vous convient plus.</p>
+                  <p>Une nouvelle opportunité se présente, avec des perspectives intéressantes.</p>
+                  <p>Vous hésitez : «&nbsp;Après toutes ces années, ce serait dommage de partir.&nbsp;»</p>
+                  <p>Cette pensée peut révéler l'influence des coûts irrécupérables.</p>
+                  <p>Mais votre expérience acquise reste précieuse : elle peut être transférable et doit être prise en compte dans votre décision.</p>
+                </div></div></div>
+              </div>
+
+              <div class="acc-item">
+                <h3 class="acc-h"><button type="button" class="acc-btn" id="acc-b3" aria-expanded="false" aria-controls="acc-p3">
+                  <span>Comment reconnaître ce biais&nbsp;?</span>
+                  <svg class="chev" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7 9 11.5 13.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button></h3>
+                <div class="collapse" id="acc-p3" role="region" aria-labelledby="acc-b3"><div class="collapse-inner"><div class="acc-body">
+                  <ul class="qs">
+                    <li>«&nbsp;Est-ce que je continue surtout parce que j'ai déjà beaucoup investi&nbsp;?&nbsp;»</li>
+                    <li>«&nbsp;Si je découvrais cette situation aujourd'hui, ferais-je le même choix&nbsp;?&nbsp;»</li>
+                    <li>«&nbsp;Quels bénéfices et quels risques chaque option présente-t-elle pour mon avenir&nbsp;?&nbsp;»</li>
+                  </ul>
+                  <p class="small">Ces questions sont des pistes de réflexion, pas un test psychologique.</p>
+                </div></div></div>
+              </div>
+
+              <div class="acc-item">
+                <h3 class="acc-h"><button type="button" class="acc-btn" id="acc-b4" aria-expanded="false" aria-controls="acc-p4">
+                  <span>Ce que dit la recherche</span>
+                  <svg class="chev" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7 9 11.5 13.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button></h3>
+                <div class="collapse" id="acc-p4" role="region" aria-labelledby="acc-b4"><div class="collapse-inner"><div class="acc-body">
+                  <p>Le biais des coûts irrécupérables est un phénomène étudié en psychologie de la décision et en économie comportementale.</p>
+                  <p>Il désigne la tendance à laisser des investissements passés, qui ne peuvent plus être récupérés, influencer des décisions actuelles.</p>
+                  <p>Des travaux classiques, notamment ceux d'Arkes et Blumer (1985), ont étudié ce phénomène.</p>
+                  <p>Il peut être lié à plusieurs mécanismes psychologiques, notamment la difficulté à accepter une perte, mais il ne se confond pas avec l'aversion à la perte.</p>
+                  <p class="cite">Arkes, H. R., &amp; Blumer, C. (1985). The psychology of sunk cost. <i>Organizational Behavior and Human Decision Processes</i>, 35(1), 124-140.</p>
+                </div></div></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -420,7 +521,28 @@
     } else { fail(); }
   }
 
+  /* ---------- Pour aller plus loin : menu + accordéon (une rubrique à la fois) ---------- */
+  function setOpen(btn, open) {
+    btn.setAttribute("aria-expanded", String(open));
+    document.getElementById(btn.getAttribute("aria-controls")).classList.toggle("open", open);
+  }
+  function closeAllAcc() { $$(".acc-btn").forEach(function (b) { setOpen(b, false); }); }
+  $("#moreToggle").addEventListener("click", function () {
+    var open = this.getAttribute("aria-expanded") !== "true";
+    setOpen(this, open);
+    if (!open) closeAllAcc();
+  });
+  $$(".acc-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") !== "true";
+      closeAllAcc();
+      setOpen(btn, open);
+    });
+  });
+
   function restart() {
+    setOpen($("#moreToggle"), false);
+    closeAllAcc();
     state.answers.case1 = null;
     state.answers.case2 = null;
     $("#reflection").value = "";
